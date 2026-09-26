@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Conheça os cursos técnicos por competência do Instituto Educacional Horizonte, organizados por área de formação." />
+    <meta name="theme-color" content="#062744" />
+    <meta property="og:title" content="Cursos técnicos | Instituto Educacional Horizonte" />
+    <meta property="og:description" content="Cursos técnicos por competência organizados por área de formação." />
+    <meta property="og:type" content="website" />
+    <title>Cursos técnicos | Instituto Educacional Horizonte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="cursos.css" />
+    <script type="module" src="app.js"></script>
+    <script type="module" src="cursos.js"></script>
+  </head>
+  <body class="courses-page">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+    <header class="site-header course-site-header scrolled" data-header>
+      <a class="brand" href="index.html" aria-label="Instituto Educacional Horizonte — página inicial">
+        <img src="assets/logo-horizonte-dark.jpeg" alt="" width="56" height="56" />
+        <span>Instituto Educacional<br /><strong>Horizonte</strong></span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="sr-only">Abrir menu</span>
+        <span></span><span></span>
+      </button>
+
+      <nav id="menu-principal" class="main-nav" aria-label="Navegação principal">
+        <a href="index.html#instituto">O Instituto</a>
+        <a href="index.html#formacoes">Formações</a>
+        <a href="index.html#experiencia">Experiência</a>
+        <a href="index.html#contato">Contato</a>
+        <a class="nav-cta" href="index.html">Voltar ao início</a>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section class="courses-hero" aria-labelledby="courses-title">
+        <div class="courses-hero-orbit" aria-hidden="true"></div>
+        <div class="courses-hero-content">
+          <p class="eyebrow eyebrow-on-dark">Cursos técnicos por competência</p>
+          <h1 id="courses-title">Encontre a formação para o seu <em>próximo horizonte.</em></h1>
+          <p>Explore as formações por área profissional e encontre o caminho mais próximo dos seus objetivos.</p>
+          <a class="text-link text-link-light" href="#catalogo">Explorar catálogo <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="courses-hero-meta" aria-hidden="true"><strong>10</strong><span>áreas de formação</span></div>
+      </section>
+
+      <section id="catalogo" class="course-catalog" aria-labelledby="catalog-title">
+        <div class="catalog-heading reveal">
+          <div>
+            <p class="eyebrow">Catálogo de formações</p>
+            <h2 id="catalog-title">Conhecimento organizado por área.</h2>
+          </div>
+          <p>Selecione uma categoria ou pesquise pelo nome do curso.</p>
+        </div>
+
+        <div class="catalog-tools reveal" aria-label="Filtros do catálogo">
+          <label class="course-search">
+            <span class="sr-only">Pesquisar curso</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+            <input type="search" placeholder="Qual curso você procura?" autocomplete="off" data-course-search />
+          </label>
+          <div class="filter-list" role="group" aria-label="Filtrar por área">
+            <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">Todas</button>
+            <button class="filter-button" type="button" data-filter="gestao" aria-pressed="false">Gestão</button>
+            <button class="filter-button" type="button" data-filter="saude" aria-pressed="false">Saúde</button>
+            <button class="filter-button" type="button" data-filter="tecnologia" aria-pressed="false">Tecnologia</button>
+            <button class="filter-button" type="button" data-filter="industria" aria-pressed="false">Indústria</button>
+            <button class="filter-button" type="button" data-filter="educacao" aria-pressed="false">Educação</button>
+            <button class="filter-button" type="button" data-filter="outros" aria-pressed="false">Outras áreas</button>
+          </div>
+        </div>
+
+        <p class="catalog-status" data-course-status aria-live="polite">29 cursos em 10 áreas</p>
+
+        <div class="course-grid" data-course-grid>
+          <article class="course-category reveal" data-category="gestao">
+            <header><span>01</span><div><p>6 cursos</p><h3>Gestão e Negócios</h3></div></header>
+            <ul>
+              <li>Técnico em Administração</li><li>Técnico em Contabilidade</li><li>Técnico em Eventos</li><li>Técnico em Logística</li><li>Técnico em Secretaria Escolar</li><li>Técnico em Transações Imobiliárias</li>
+            </ul>
+          </article>
+
+          <article class="course-category reveal" data-category="saude">
+            <header><span>02</span><div><p>7 cursos</p><h3>Ambiente e Saúde</h3></div></header>
+            <ul>
+              <li>Técnico em Enfermagem</li><li>Técnico em Estética</li><li>Técnico em Farmácia</li><li>Técnico em Gerência em Saúde</li><li>Técnico em Nutrição e Dietética</li><li>Técnico em Óptica</li><li>Técnico em Radiologia</li>
+            </ul>
+          </article>
+
+          <article class="course-category reveal" data-category="tecnologia">
+            <header><span>03</span><div><p>2 cursos</p><h3>Informação e Comunicação</h3></div></header>
+            <ul><li>Técnico em Desenvolvimento de Sistemas</li><li>Técnico em Informática para Internet</li></ul>
+          </article>
+
+          <article class="course-category reveal" data-category="industria">
+            <header><span>04</span><div><p>7 cursos</p><h3>Controle e Processos Industriais</h3></div></header>
+            <ul>
+              <li>Técnico em Automação Industrial</li><li>Técnico em Eletromecânica</li><li>Técnico em Eletrotécnica</li><li>Técnico em Equipamentos Biomédicos</li><li>Técnico em Manutenção de Máquinas Navais</li><li>Técnico em Refrigeração e Climatização</li><li>Técnico em Soldagem</li>
+            </ul>
+          </article>
+
+          <article class="course-category reveal" data-category="educacao">
+            <header><span>05</span><div><p>1 curso</p><h3>Desenvolvimento Educacional e Social</h3></div></header>
+            <ul><li>Técnico em Tradução e Interpretação de Libras</li></ul>
+          </article>
+
+          <article class="course-category reveal" data-category="outros">
+            <header><span>06</span><div><p>1 curso</p><h3>Recursos Naturais</h3></div></header>
+            <ul><li>Técnico em Mineração</li></ul>
+          </article>
+
+          <article class="course-category reveal" data-category="outros">
+            <header><span>07</span><div><p>1 curso</p><h3>Turismo, Hospitalidade e Lazer</h3></div></header>
+            <ul><li>Técnico em Guia de Turismo</li></ul>
+          </article>
+
+          <article class="course-category reveal" data-category="outros">
+            <header><span>08</span><div><p>1 curso</p><h3>Segurança</h3></div></header>
+            <ul><li>Técnico em Defesa Civil</li></ul>
+          </article>
+
+          <article class="course-category reveal" data-category="outros">
+            <header><span>09</span><div><p>2 cursos</p><h3>Infraestrutura</h3></div></header>
+            <ul><li>Técnico em Edificações</li><li>Técnico em Design de Interiores</li></ul>
+          </article>
+
+          <article class="course-category reveal" data-category="outros">
+            <header><span>10</span><div><p>1 curso</p><h3>Transporte</h3></div></header>
+            <ul><li>Técnico em Trânsito</li></ul>
+          </article>
+        </div>
+
+        <div class="catalog-empty" data-course-empty hidden>
+          <strong>Nenhum curso encontrado.</strong>
+          <p>Tente pesquisar outro termo ou selecione todas as áreas.</p>
+        </div>
+
+        <p class="catalog-disclaimer">A oferta pode ser atualizada. Consulte disponibilidade, requisitos e condições diretamente com o Instituto.</p>
+      </section>
+
+      <section class="courses-contact" aria-labelledby="courses-contact-title">
+        <div>
+          <p class="eyebrow eyebrow-on-dark">Seu próximo passo</p>
+          <h2 id="courses-contact-title">Encontrou o curso que combina com você?</h2>
+        </div>
+        <div>
+          <p>Fale com o Instituto para confirmar a oferta atual e receber as informações da formação escolhida.</p>
+          <a class="button button-gold" href="https://www.instagram.com/institutoeducacionalhorizonte/" target="_blank" rel="noopener noreferrer">Falar com o Instituto <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img src="assets/logo-horizonte-dark.jpeg" alt="" width="72" height="72" loading="lazy" />
+        <div><strong>Instituto Educacional Horizonte</strong><span>Cursos técnicos por competência e pós-graduação · 100% EAD</span></div>
+      </div>
+      <nav aria-label="Links do rodapé">
+        <a href="index.html">Página inicial</a>
+        <a href="index.html#contato">Contato</a>
+        <a class="footer-social" href="https://www.instagram.com/institutoeducacionalhorizonte/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+      </nav>
+      <p class="copyright">© <span data-year></span> Instituto Educacional Horizonte.</p>
+    </footer>
+  </body>
+</html>
