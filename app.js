@@ -22,6 +22,11 @@ menuButton.addEventListener("click", () => {
 });
 
 navigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+document.addEventListener("click", (event) => {
+  if (!document.body.classList.contains("menu-open")) return;
+  if (navigation.contains(event.target) || menuButton.contains(event.target)) return;
+  closeMenu();
+});
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeMenu();
 });
