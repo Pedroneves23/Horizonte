@@ -1,3 +1,5 @@
+import introLogoUrl from "./assets/favicon-h.png";
+
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".main-nav");
@@ -67,7 +69,7 @@ const mountIntro = () => {
     overlay.innerHTML = `
       <div class="intro-stage">
         <div class="intro-mark">
-          <img src="assets/favicon-h.png" alt="" width="256" height="256" />
+          <img src="${introLogoUrl}" alt="" width="256" height="256" />
           <span class="intro-glint"></span>
         </div>
         <div class="intro-signature">
@@ -137,7 +139,17 @@ navigation.querySelectorAll("a").forEach((link) => {
     if (wasMenuOpen && target) {
       event.preventDefault();
       requestAnimationFrame(() => {
-        target.scrollIntoView({ block: "start" });
+        const scrollTarget = targetSelector === "#contato"
+          ? target.querySelector(".contact-copy .eyebrow")
+          : target;
+
+        if (targetSelector === "#contato" && scrollTarget) {
+          const headerHeight = header.getBoundingClientRect().height;
+          const top = window.scrollY + scrollTarget.getBoundingClientRect().top - headerHeight - 20;
+          window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+        } else {
+          scrollTarget.scrollIntoView({ block: "start" });
+        }
         window.history.replaceState(null, "", targetSelector);
       });
     }
