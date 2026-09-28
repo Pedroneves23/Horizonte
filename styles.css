@@ -88,18 +88,18 @@ html.intro-active::before {
 .intro.is-leaving { animation: intro-leave .55s ease forwards; }
 .intro.is-skipped { animation-duration: .26s; }
 .intro-stage { position: relative; width: min(78vw, 540px); height: min(64vh, 430px); display: grid; place-items: center; }
-.intro-mark { position: relative; z-index: 2; width: clamp(178px, 28vw, 252px); aspect-ratio: 1; margin-top: -48px; opacity: 0; transform: scale(1.18); clip-path: inset(48% 0 48% 0); }
+.intro-mark { --intro-mark-offset: 8px; position: relative; z-index: 2; width: clamp(178px, 28vw, 252px); aspect-ratio: 1; margin-top: -48px; opacity: 0; transform: translateX(var(--intro-mark-offset)) scale(1.18); clip-path: inset(48% 0 48% 0); }
 .intro-mark img { width: 100%; height: 100%; object-fit: contain; }
 .intro-glint { position: absolute; inset: 0; opacity: 0; background: linear-gradient(105deg, transparent 34%, rgba(255,255,255,.9) 49%, transparent 64%); transform: translateX(-110%); -webkit-mask: url("assets/favicon-h.png") center / contain no-repeat; mask: url("assets/favicon-h.png") center / contain no-repeat; }
-.intro-signature { position: absolute; z-index: 3; top: calc(50% + 106px); left: 50%; width: min(92vw, 520px); display: grid; gap: 8px; text-align: center; text-transform: uppercase; transform: translateX(-50%); }
+.intro-signature { position: absolute; z-index: 3; top: calc(50% + 96px); left: 50%; width: min(92vw, 540px); display: grid; gap: 7px; text-align: center; text-transform: uppercase; transform: translateX(-50%); }
 .intro-signature strong,
 .intro-signature > .intro-wordmark { display: flex; justify-content: center; overflow: hidden; }
-.intro-signature strong { align-items: center; font-size: clamp(12px, 1.6vw, 16px); font-weight: 500; letter-spacing: .34em; }
+.intro-signature strong { align-items: center; font-size: clamp(13px, 1.4vw, 16px); font-weight: 500; letter-spacing: .28em; }
 .intro-signature strong::before,
-.intro-signature strong::after { content: ""; flex: 0 0 clamp(28px, 5vw, 48px); height: 2px; opacity: 0; background: var(--gold); transform: scaleX(0); }
+.intro-signature strong::after { content: ""; flex: 0 0 clamp(34px, 5vw, 54px); height: 2px; opacity: 0; background: var(--gold); transform: scaleX(0); }
 .intro-signature strong::before { margin-right: clamp(10px, 2vw, 18px); transform-origin: right; }
 .intro-signature strong::after { margin-left: clamp(10px, 2vw, 18px); transform-origin: left; }
-.intro-signature > .intro-wordmark { color: var(--gold-light); font-size: 9px; font-weight: 600; letter-spacing: .28em; }
+.intro-signature > .intro-wordmark { color: var(--gold-light); font-size: clamp(21px, 2.4vw, 28px); font-weight: 600; line-height: 1; letter-spacing: .12em; }
 .intro-letter { display: inline-block; opacity: 0; transform: translateY(14px) scale(.96); transform-origin: center bottom; }
 
 .intro.is-playing .intro-mark { animation: intro-mark-in .74s var(--intro-ease) .18s both; }
@@ -118,7 +118,7 @@ html.intro-leaving .site-header { opacity: 0; }
 
 @keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
 @keyframes intro-leave { to { opacity: 0; visibility: hidden; } }
-@keyframes intro-mark-in { from { opacity: 0; transform: scale(1.18); clip-path: inset(48% 0 48% 0); } to { opacity: 1; transform: scale(1); clip-path: inset(0); } }
+@keyframes intro-mark-in { from { opacity: 0; transform: translateX(var(--intro-mark-offset)) scale(1.18); clip-path: inset(48% 0 48% 0); } to { opacity: 1; transform: translateX(var(--intro-mark-offset)) scale(1); clip-path: inset(0); } }
 @keyframes intro-glint { 0% { opacity: 0; transform: translateX(-110%); } 28%, 72% { opacity: .78; } 100% { opacity: 0; transform: translateX(110%); } }
 @keyframes intro-letter-in { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
 @keyframes intro-side-line { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
@@ -340,9 +340,14 @@ html.intro-leaving .site-header { opacity: 0; }
   .footer-brand { align-items: flex-start; }
   .site-footer nav { justify-content: flex-start; flex-wrap: wrap; }
   .intro-stage { width: 88vw; height: min(62vh, 390px); }
-  .intro-mark { width: 188px; }
-  .intro-signature { top: calc(50% + 94px); }
-  .intro-signature strong { letter-spacing: .22em; }
+  .intro-mark { --intro-mark-offset: 6px; width: 204px; }
+  .intro-signature { top: calc(50% + 76px); width: calc(100vw - 28px); }
+  .intro-signature strong { font-size: clamp(12px, 3.6vw, 14px); letter-spacing: .16em; }
+  .intro-signature strong::before,
+  .intro-signature strong::after { flex-basis: 24px; }
+  .intro-signature strong::before { margin-right: 8px; }
+  .intro-signature strong::after { margin-left: 8px; }
+  .intro-signature > .intro-wordmark { font-size: 21px; letter-spacing: .1em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
