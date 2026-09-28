@@ -16,11 +16,16 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scrollbar-color: #606060 var(--navy); scrollbar-width: auto; }
 body { margin: 0; color: var(--ink); background: var(--cream); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 ::selection { color: var(--navy-deep); background: var(--gold-light); }
 body { overflow-x: hidden; }
 body.menu-open { overflow: hidden; }
+::-webkit-scrollbar { width: 16px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { min-height: 40px; background: #606060; background-clip: content-box; border: 4px solid var(--navy); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #909090; background-clip: content-box; }
+::-webkit-scrollbar-button { display: none; }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -45,6 +50,70 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .site-header.scrolled .nav-cta { border-color: rgba(255,255,255,.55); }
 .nav-cta:hover { color: var(--navy); background: var(--gold); border-color: var(--gold); }
 .menu-toggle { display: none; }
+
+/*
+  INTRO HORIZONTE — roteiro a partir de .intro.is-playing
+  0,18–0,92 s  PNG oficial assenta no quadro final
+  0,55–1,31 s  brilho percorre apenas a silhueta
+  0,82–1,97 s  “Instituto Educacional” entra letra a letra
+  1,12–2,02 s  “Horizonte” acompanha em stagger dourado
+  2,02–2,55 s  marca completa respira em repouso
+  2,55–3,10 s  dissolução para a hero
+*/
+html.intro-active::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: #031b30;
+  animation: intro-failsafe .5s 4.8s both;
+}
+
+.intro {
+  --intro-ease: cubic-bezier(.22, 1, .36, 1);
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--white);
+  background:
+    radial-gradient(circle at 50% 45%, rgba(7,154,138,.14), transparent 34%),
+    #031b30;
+  cursor: default;
+}
+
+.intro.is-leaving { animation: intro-leave .55s ease forwards; }
+.intro.is-skipped { animation-duration: .26s; }
+.intro-stage { position: relative; width: min(78vw, 540px); height: min(64vh, 430px); display: grid; place-items: center; }
+.intro-mark { position: relative; z-index: 2; width: clamp(178px, 28vw, 252px); aspect-ratio: 1; margin-top: -48px; opacity: 0; transform: scale(1.18); clip-path: inset(48% 0 48% 0); }
+.intro-mark img { width: 100%; height: 100%; object-fit: contain; }
+.intro-glint { position: absolute; inset: 0; opacity: 0; background: linear-gradient(105deg, transparent 34%, rgba(255,255,255,.9) 49%, transparent 64%); transform: translateX(-110%); -webkit-mask: url("assets/favicon-h.png") center / contain no-repeat; mask: url("assets/favicon-h.png") center / contain no-repeat; }
+.intro-signature { position: absolute; z-index: 3; top: calc(50% + 106px); left: 50%; width: max-content; display: grid; gap: 8px; text-align: center; text-transform: uppercase; transform: translateX(-50%); }
+.intro-signature strong,
+.intro-signature > .intro-wordmark { display: flex; justify-content: center; overflow: hidden; }
+.intro-signature strong { font-size: clamp(12px, 1.6vw, 16px); font-weight: 500; letter-spacing: .34em; }
+.intro-signature > .intro-wordmark { color: var(--gold-light); font-size: 9px; font-weight: 600; letter-spacing: .28em; }
+.intro-letter { display: inline-block; opacity: 0; transform: translateY(14px) scale(.96); transform-origin: center bottom; }
+
+.intro.is-playing .intro-mark { animation: intro-mark-in .74s var(--intro-ease) .18s both; }
+.intro.is-playing .intro-glint { animation: intro-glint .76s ease .55s both; }
+.intro.is-playing .intro-letter-primary { animation: intro-letter-in .62s var(--intro-ease) calc(.82s + var(--letter-index) * .025s) both; }
+.intro.is-playing .intro-letter-gold { animation: intro-letter-in .58s var(--intro-ease) calc(1.12s + var(--letter-index) * .04s) both; }
+
+html.intro-active .hero-media img,
+html.intro-active .hero-content,
+html.intro-active .hero-line { animation-play-state: paused; }
+html.intro-active .site-header,
+html.intro-leaving .site-header { opacity: 0; }
+.site-header { transition: height .4s var(--ease), background .4s, color .4s, box-shadow .4s, opacity .55s ease; }
+
+@keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
+@keyframes intro-leave { to { opacity: 0; visibility: hidden; } }
+@keyframes intro-mark-in { from { opacity: 0; transform: scale(1.18); clip-path: inset(48% 0 48% 0); } to { opacity: 1; transform: scale(1); clip-path: inset(0); } }
+@keyframes intro-glint { 0% { opacity: 0; transform: translateX(-110%); } 28%, 72% { opacity: .78; } 100% { opacity: 0; transform: translateX(110%); } }
+@keyframes intro-letter-in { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
 
 .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; color: var(--white); background: var(--navy-deep); }
 .hero-media, .hero-shade { position: absolute; inset: 0; }
@@ -262,9 +331,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .site-footer { grid-template-columns: 1fr; padding: 42px 20px; }
   .footer-brand { align-items: flex-start; }
   .site-footer nav { justify-content: flex-start; flex-wrap: wrap; }
+  .intro-stage { width: 88vw; height: min(62vh, 390px); }
+  .intro-mark { width: 188px; }
+  .intro-signature { top: calc(50% + 94px); }
+  .intro-signature strong { letter-spacing: .22em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .intro, html.intro-active::before { display: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
