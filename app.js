@@ -1,4 +1,4 @@
-import introLogoUrl from "./assets/favicon-h.png";
+import introLogoUrl from "./assets/logo-horizonte-transparent.png";
 
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector(".menu-toggle");
@@ -69,7 +69,7 @@ const mountIntro = () => {
     overlay.innerHTML = `
       <div class="intro-stage">
         <div class="intro-mark">
-          <img src="${introLogoUrl}" alt="" width="256" height="256" />
+          <img src="${introLogoUrl}" alt="" width="1044" height="770" />
           <span class="intro-glint"></span>
         </div>
         <div class="intro-signature">
