@@ -56,6 +56,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   0,18–0,92 s  PNG oficial assenta no quadro final
   0,55–1,31 s  brilho percorre apenas a silhueta
   0,82–1,97 s  “Instituto Educacional” entra letra a letra
+  1,02–1,52 s  linhas douradas abrem nas laterais do nome
   1,12–2,02 s  “Horizonte” acompanha em stagger dourado
   2,02–2,55 s  marca completa respira em repouso
   2,55–3,10 s  dissolução para a hero
@@ -90,16 +91,22 @@ html.intro-active::before {
 .intro-mark { position: relative; z-index: 2; width: clamp(178px, 28vw, 252px); aspect-ratio: 1; margin-top: -48px; opacity: 0; transform: scale(1.18); clip-path: inset(48% 0 48% 0); }
 .intro-mark img { width: 100%; height: 100%; object-fit: contain; }
 .intro-glint { position: absolute; inset: 0; opacity: 0; background: linear-gradient(105deg, transparent 34%, rgba(255,255,255,.9) 49%, transparent 64%); transform: translateX(-110%); -webkit-mask: url("assets/favicon-h.png") center / contain no-repeat; mask: url("assets/favicon-h.png") center / contain no-repeat; }
-.intro-signature { position: absolute; z-index: 3; top: calc(50% + 106px); left: 50%; width: max-content; display: grid; gap: 8px; text-align: center; text-transform: uppercase; transform: translateX(-50%); }
+.intro-signature { position: absolute; z-index: 3; top: calc(50% + 106px); left: 50%; width: min(92vw, 520px); display: grid; gap: 8px; text-align: center; text-transform: uppercase; transform: translateX(-50%); }
 .intro-signature strong,
 .intro-signature > .intro-wordmark { display: flex; justify-content: center; overflow: hidden; }
-.intro-signature strong { font-size: clamp(12px, 1.6vw, 16px); font-weight: 500; letter-spacing: .34em; }
+.intro-signature strong { align-items: center; font-size: clamp(12px, 1.6vw, 16px); font-weight: 500; letter-spacing: .34em; }
+.intro-signature strong::before,
+.intro-signature strong::after { content: ""; flex: 0 0 clamp(28px, 5vw, 48px); height: 2px; opacity: 0; background: var(--gold); transform: scaleX(0); }
+.intro-signature strong::before { margin-right: clamp(10px, 2vw, 18px); transform-origin: right; }
+.intro-signature strong::after { margin-left: clamp(10px, 2vw, 18px); transform-origin: left; }
 .intro-signature > .intro-wordmark { color: var(--gold-light); font-size: 9px; font-weight: 600; letter-spacing: .28em; }
 .intro-letter { display: inline-block; opacity: 0; transform: translateY(14px) scale(.96); transform-origin: center bottom; }
 
 .intro.is-playing .intro-mark { animation: intro-mark-in .74s var(--intro-ease) .18s both; }
 .intro.is-playing .intro-glint { animation: intro-glint .76s ease .55s both; }
 .intro.is-playing .intro-letter-primary { animation: intro-letter-in .62s var(--intro-ease) calc(.82s + var(--letter-index) * .025s) both; }
+.intro.is-playing .intro-signature strong::before,
+.intro.is-playing .intro-signature strong::after { animation: intro-side-line .5s var(--intro-ease) 1.02s both; }
 .intro.is-playing .intro-letter-gold { animation: intro-letter-in .58s var(--intro-ease) calc(1.12s + var(--letter-index) * .04s) both; }
 
 html.intro-active .hero-media img,
@@ -114,6 +121,7 @@ html.intro-leaving .site-header { opacity: 0; }
 @keyframes intro-mark-in { from { opacity: 0; transform: scale(1.18); clip-path: inset(48% 0 48% 0); } to { opacity: 1; transform: scale(1); clip-path: inset(0); } }
 @keyframes intro-glint { 0% { opacity: 0; transform: translateX(-110%); } 28%, 72% { opacity: .78; } 100% { opacity: 0; transform: translateX(110%); } }
 @keyframes intro-letter-in { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes intro-side-line { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
 
 .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; color: var(--white); background: var(--navy-deep); }
 .hero-media, .hero-shade { position: absolute; inset: 0; }
